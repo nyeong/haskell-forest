@@ -24,9 +24,10 @@ extra-source-files:
 
 common shared
   ghc-options:
-    -Wall -Wincomplete-record-updates -Wincomplete-uni-patterns
-    -Wmissing-deriving-strategies -Wunused-foralls -Wunused-foralls
-    -fprint-explicit-foralls -fprint-explicit-kinds
+    -Wno-orphans -Wall -Wincomplete-record-updates
+    -Wincomplete-uni-patterns -Wmissing-deriving-strategies
+    -Wunused-foralls -Wunused-foralls -fprint-explicit-foralls
+    -fprint-explicit-kinds
 
   mixins:
     base hiding (Prelude),
@@ -35,11 +36,16 @@ common shared
 
   default-extensions:
     DataKinds
+    DeriveGeneric
     DerivingStrategies
     DerivingVia
+    DuplicateRecordFields
+    GeneralizedNewtypeDeriving
     LambdaCase
     MultiWayIf
     NoStarIsType
+    OverloadedLabels
+    OverloadedRecordDot
     OverloadedStrings
     StrictData
     TypeFamilies
@@ -48,22 +54,34 @@ common shared
   build-depends:
     , aeson
     , async
-    , base          >=4   && <5
+    , base               >=4   && <5
     , data-default
     , directory
+    , errors
     , filepath
+    , generic-lens
+    , lens
     , mtl
     , optics-core
-    , profunctors
-    , relude        >=1.0
-    , shower
-    , time
-    , with-utf8
     , postgresql-simple
+    , profunctors
+    , relude             >=1.0
+    , shower
+    , stm
+    , text
+    , time
+    , transformers
+    , ulid
+    , with-utf8
 
   hs-source-dirs:     src
   default-language:   GHC2021
 
 executable haskell-forest
-  import:  shared
-  main-is: Main.hs
+  import:        shared
+  other-modules:
+    Domain.Todo.Task
+    Domain.Todo.TaskRepo
+    Domain.Todo.UseCase
+
+  main-is:       Main.hs
