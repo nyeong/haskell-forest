@@ -60,18 +60,22 @@ common shared
     , errors
     , filepath
     , generic-lens
+    , http-types
     , lens
     , mtl
     , optics-core
     , postgresql-simple
     , profunctors
     , relude             >=1.0
+    , scotty
     , shower
     , stm
     , text
     , time
     , transformers
     , ulid
+    , unliftio
+    , wai
     , with-utf8
 
   hs-source-dirs:     src
@@ -83,5 +87,7 @@ executable haskell-forest
     Domain.Todo.Task
     Domain.Todo.TaskRepo
     Domain.Todo.UseCase
+    Infra.PgDatabase.Connection
+    Infra.PgDatabase.Task
 
   main-is:       Main.hs
