@@ -26,6 +26,8 @@ data Task where
 instance ToJSON ULID where
   toJSON = String . show
 
+instance ToJSON Task
+
 mkTask :: ULID -> Text -> UTCTime -> Maybe Task
 mkTask taskId content createdAt =
   if length content > 12
