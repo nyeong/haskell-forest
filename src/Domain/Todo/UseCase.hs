@@ -1,4 +1,4 @@
-module Domain.Todo.UseCase where
+module Domain.Todo.UseCase (createTask) where
 
 import Control.Error.Util ((??))
 import Control.Monad.Except (MonadError (throwError))

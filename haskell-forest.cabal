@@ -18,15 +18,15 @@ extra-source-files:
   README.md
 
 library
-  exposed-modules:
+  exposed-modules:    Lib
+  other-modules:
     Domain.Todo.Task
     Domain.Todo.TaskRepo
     Domain.Todo.UseCase
     Infra.PgDatabase.Connection
     Infra.PgDatabase.Task
-    Main
+    Paths_haskell_forest
 
-  other-modules:      Paths_haskell_forest
   autogen-modules:    Paths_haskell_forest
   hs-source-dirs:     src
   default-extensions:
@@ -85,16 +85,9 @@ library
   default-language:   GHC2021
 
 executable haskell-forest
-  other-modules:
-    Domain.Todo.Task
-    Domain.Todo.TaskRepo
-    Domain.Todo.UseCase
-    Infra.PgDatabase.Connection
-    Infra.PgDatabase.Task
-    Paths_haskell_forest
-
+  other-modules:      Paths_haskell_forest
   autogen-modules:    Paths_haskell_forest
-  hs-source-dirs:     src
+  hs-source-dirs:     app
   default-extensions:
     DataKinds
     DeriveGeneric

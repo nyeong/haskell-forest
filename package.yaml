@@ -71,11 +71,13 @@ dependencies:
   - with-utf8
 
 library:
+  exposed-modules:
+    - Lib
   source-dirs: src
 
 executables:
   haskell-forest:
     main: Main.hs
-    source-dirs: src
+    source-dirs: app
     dependencies:
       - haskell-forest

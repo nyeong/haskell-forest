@@ -1,9 +1,12 @@
+{-# OPTIONS_GHC -Wno-orphans #-}
+
 module Domain.Todo.Task (
   mkTask,
   Task (..),
 )
 where
 
+import Data.Aeson (ToJSON (..), Value (..))
 import Data.Text (length)
 import Data.Time (UTCTime)
 import Data.ULID (ULID)
@@ -19,6 +22,9 @@ data Task where
     } ->
     Task
   deriving stock (Show, Generic)
+
+instance ToJSON ULID where
+  toJSON = String . show
 
 mkTask :: ULID -> Text -> UTCTime -> Maybe Task
 mkTask taskId content createdAt =

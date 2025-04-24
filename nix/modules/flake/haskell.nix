@@ -22,6 +22,7 @@
             inherit root;
             fileset = lib.fileset.unions [
               (root + /src)
+              (root + /app)
               (root + /haskell-forest.cabal)
               (root + /LICENSE)
               (root + /README.md)
