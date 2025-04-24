@@ -58,6 +58,9 @@
         # Development shell configuration
         devShell = {
           hlsCheck.enable = false;
+          tools = hp: {
+            hpack = hp.hpack;
+          };
         };
 
         # What should haskell-flake add to flake outputs?

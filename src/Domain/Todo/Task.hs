@@ -4,7 +4,7 @@ module Domain.Todo.Task (
 )
 where
 
-import Data.Text qualified as Text
+import Data.Text (length)
 import Data.Time (UTCTime)
 import Data.ULID (ULID)
 import Prelude hiding (id, length)
@@ -22,7 +22,7 @@ data Task where
 
 mkTask :: ULID -> Text -> UTCTime -> Maybe Task
 mkTask taskId content createdAt =
-  if Text.length content > 12
+  if length content > 12
     then Nothing
     else
       Just $
