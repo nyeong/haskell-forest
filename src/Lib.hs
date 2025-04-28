@@ -14,7 +14,8 @@ import Infra.PgDatabase.Connection (withConnection)
 import Infra.PgDatabase.Task qualified as PgTask
 
 newtype App a = App {unApp :: ReaderT Connection IO a}
-  deriving (Functor, Applicative, Monad, MonadIO, MonadReader Connection)
+  deriving stock (Functor)
+  deriving newtype (Applicative, Monad, MonadIO, MonadReader Connection)
 
 instance TaskRepo App where
   save task = do
