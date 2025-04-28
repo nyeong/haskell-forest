@@ -18,15 +18,18 @@ extra-source-files:
   README.md
 
 library
-  exposed-modules:    Lib
-  other-modules:
+  exposed:            True
+  exposed-modules:
     Domain.Todo.Task
     Domain.Todo.TaskRepo
     Domain.Todo.UseCase
     Infra.PgDatabase.Connection
     Infra.PgDatabase.Task
-    Paths_haskell_forest
+    Infra.Web.Error
+    Infra.Web.Handler.Task
+    Lib
 
+  other-modules:      Paths_haskell_forest
   autogen-modules:    Paths_haskell_forest
   hs-source-dirs:     src
   default-extensions:
@@ -144,3 +147,73 @@ executable haskell-forest
 
   default-language:   GHC2021
   main-is:            Main.hs
+
+test-suite haskell-forest-test
+  type:               exitcode-stdio-1.0
+  main-is:            Spec.hs
+  other-modules:
+    Domain.Todo.TaskSpec
+    HelloSpec
+    Paths_haskell_forest
+
+  autogen-modules:    Paths_haskell_forest
+  hs-source-dirs:     test
+  default-extensions:
+    DataKinds
+    DeriveGeneric
+    DerivingStrategies
+    DerivingVia
+    DuplicateRecordFields
+    GeneralizedNewtypeDeriving
+    LambdaCase
+    MultiWayIf
+    NoStarIsType
+    OverloadedLabels
+    OverloadedRecordDot
+    OverloadedStrings
+    StrictData
+    TypeFamilies
+    ViewPatterns
+
+  ghc-options:
+    -Wno-orphans -Wall -Wincomplete-record-updates
+    -Wincomplete-uni-patterns -Wmissing-deriving-strategies
+    -Wunused-foralls -fprint-explicit-foralls -fprint-explicit-kinds
+    -threaded -rtsopts -with-rtsopts=-N
+
+  build-depends:
+      aeson
+    , async
+    , base                  >=4   && <5
+    , data-default
+    , directory
+    , errors
+    , filepath
+    , generic-lens
+    , haskell-forest
+    , hspec
+    , http-types
+    , lens
+    , mtl
+    , optics-core
+    , postgresql-simple
+    , profunctors
+    , QuickCheck
+    , quickcheck-instances
+    , relude                >=1.0
+    , scotty
+    , shower
+    , stm
+    , text
+    , time
+    , transformers
+    , ulid
+    , unliftio
+    , wai
+    , with-utf8
+
+  mixins:
+    base hiding (Prelude),
+    relude (Relude as Prelude, Relude.Container.One)
+
+  default-language:   GHC2021

@@ -71,8 +71,7 @@ dependencies:
   - with-utf8
 
 library:
-  exposed-modules:
-    - Lib
+  exposed: True
   source-dirs: src
 
 executables:
@@ -81,3 +80,16 @@ executables:
     source-dirs: app
     dependencies:
       - haskell-forest
+tests:
+  haskell-forest-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - haskell-forest
+      - hspec
+      - QuickCheck
+      - quickcheck-instances
